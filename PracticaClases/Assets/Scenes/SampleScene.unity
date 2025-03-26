@@ -795,9 +795,9 @@ GameObject:
   - component: {fileID: 1380954305}
   - component: {fileID: 1380954304}
   - component: {fileID: 1380954303}
-  - component: {fileID: 1380954307}
   - component: {fileID: 1380954309}
   - component: {fileID: 1380954308}
+  - component: {fileID: 1380954307}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -911,6 +911,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   controller: {fileID: 1380954308}
+  camTransform: {fileID: 961739753}
+  mouseSensitivityX: 4
+  mouseSensitivityY: 2
 --- !u!143 &1380954308
 CharacterController:
   m_ObjectHideFlags: 0
