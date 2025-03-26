@@ -13,10 +13,18 @@ public class FPSController : MonoBehaviour
     public float mouseSensitivityY = 2f;
     private float verticalRotation = 0f;
 
+
+    //DETECTAR MOVIMIENTO DEL TOUCH
+    private Vector2 lastTouchPosition;
+    private bool isTouching = false;
+
     void Update()
     {
         MoverJugador();
-        MoverCamara();
+        MoverCamaraMouse();
+
+        if(Input.touchCount > 0)
+        MoverCamaraTouch();
     }
 
     void MoverJugador() 
@@ -29,18 +37,56 @@ public class FPSController : MonoBehaviour
         controller.Move(movimiento * speed * Time.deltaTime);       
     }
 
-    void MoverCamara()
+    void MoverCamaraMouse()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivityX;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivityY;
 
-        verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
-
-        camTransform.localRotation = Quaternion.Euler(verticalRotation,0,0f);
-        transform.Rotate(Vector3.up * mouseX);      
-         
+        AplicarRotation(mouseX,mouseY);
     }
 
+    void MoverCamaraTouch() 
+    {
+        Touch touch = Input.GetTouch(0);
+
+
+        //PREGUNTA SI ACABO DE TOCAR LA PANTALLA
+        if (touch.phase == TouchPhase.Began)
+        {
+            lastTouchPosition = touch.position;
+            isTouching = true;
+            Debug.Log("TAP EN PANTALLA");
+        }
+        //PREGUNTA SI ESTOY MOVIENDO EL DEDO EN LA PANTALLA
+        else if (touch.phase == TouchPhase.Moved && isTouching)
+        {
+            float posX = touch.deltaPosition.x * mouseSensitivityX * 0.1f;
+            float posY = touch.deltaPosition.y * mouseSensitivityY * 0.1f;
+           
+
+            AplicarRotation(posX, posY);
+
+        }
+        //SI DEJASTE DE TOCAR LA PANTALLA ENTONCES..
+        else if (touch.phase == TouchPhase.Ended) 
+        {
+            isTouching = false;
+            Debug.Log("DEJASTE DE TOCAR LA PANTALLA");
+        }
+
+    }
+    
+
+
+    void AplicarRotation(float horizontal, float vertical) 
+    {
+        verticalRotation -= vertical;//INVERTIR ROTACION
+        verticalRotation = Mathf.Clamp(verticalRotation,-90,90);
+        //Rotacion Vertical
+        camTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+
+        //Rotacion Horizontal
+        transform.Rotate(Vector3.up * horizontal);
+    }
 
 }
