@@ -1013,6 +1013,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabBala: {fileID: 470619156135643403, guid: 16b053e080e4e494a91185f1985f5997, type: 3}
   spawnPoint: {fileID: 396085146}
+--- !u!1 &1573151320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1573151322}
+  - component: {fileID: 1573151321}
+  m_Layer: 0
+  m_Name: ObjectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1573151321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573151320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43209f3477abdfd4fa9c5b50343cf374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToPool:
+  - objectToPool: {fileID: 470619156135643403, guid: 16b053e080e4e494a91185f1985f5997, type: 3}
+    amountToPool: 10
+    shouldExpand: 1
+    type: 2
+  - objectToPool: {fileID: 8581156029081789365, guid: 607ce45905f3d4d4eae8b87e884aaaa1, type: 3}
+    amountToPool: 5
+    shouldExpand: 0
+    type: 6
+--- !u!4 &1573151322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573151320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1945158661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,3 +1282,4 @@ SceneRoots:
   - {fileID: 604712594}
   - {fileID: 1945158662}
   - {fileID: 1380954306}
+  - {fileID: 1573151322}
