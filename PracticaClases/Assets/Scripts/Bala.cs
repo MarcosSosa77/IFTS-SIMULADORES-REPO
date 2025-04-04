@@ -10,6 +10,8 @@ public class Bala : MonoBehaviour
 
     void OnEnable()
     {
+        // Cancel the pending Desactivar call
+        CancelInvoke();
         Invoke("Desactivar", vidaBala);
     }
 
@@ -24,9 +26,18 @@ public class Bala : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision)
-    {
+    {     
+        // Disable the bullet
         gameObject.SetActive(false);
-      //  Instantiate(efectoExplosion,collision.transform.position,Quaternion.identity);
+       
+
+        GameObject efecto = ObjectPooler.SharedInstance.GetPooledObject(ObjectType.efectoSangre);
+        efecto.transform.position = collision.contacts[0].point;
+        efecto.transform.rotation = Quaternion.LookRotation(collision.contacts[0].normal);
+        efecto.SetActive(true);
+           
+
+      
     }
 
 }

@@ -18,7 +18,7 @@ public class Shoot : MonoBehaviour
     {
         // Instantiate(prefabBala, spawnPoint.position, spawnPoint.rotation);
 
-        GameObject objeto = ObjectPooler.SharedInstance.GetPooledObject(ObjectType.efectoSangre);
+        GameObject objeto = ObjectPooler.SharedInstance.GetPooledObject(ObjectType.Bala);
         objeto.transform.position = spawnPoint.position;
         objeto.transform.rotation = spawnPoint.rotation;
         objeto.SetActive(true);
