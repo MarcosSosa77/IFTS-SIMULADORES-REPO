@@ -4,11 +4,8 @@ using System.Collections;
 
 public enum SoundType
 {
-    TAP_SCREW,
-    COLLECT_SCREW_OK,
-    COLLECT_SCREW_WRONG,
-    COMPLETE_BOX,
-    WIN_SOUND
+    DISPARO_1,
+    IMPACTO_1
 
 }
 

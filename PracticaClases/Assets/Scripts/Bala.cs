@@ -35,7 +35,8 @@ public class Bala : MonoBehaviour
         efecto.transform.position = collision.contacts[0].point;
         efecto.transform.rotation = Quaternion.LookRotation(collision.contacts[0].normal);
         efecto.SetActive(true);
-           
+
+        SoundManager.instance.PlaySound(SoundType.IMPACTO_1, 1f);
 
       
     }

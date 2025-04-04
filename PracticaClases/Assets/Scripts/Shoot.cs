@@ -10,6 +10,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) 
         {
             DispararBala();
+            SoundManager.instance.PlaySound(SoundType.DISPARO_1, 2f);
         }
     }
 
