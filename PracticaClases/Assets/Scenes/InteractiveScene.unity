@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0543e5b8d541ec442979be8d0d0e0fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 1
+  rotationSpeed: 0.1
   minVerticalAngle: -80
   maxVerticalAngle: 80
 --- !u!114 &216771672
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4861d2dcbb476b142bd1b66c1d563cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdTimeThreshold: 0.1
-  maxHoldMovement: 15
+  holdTimeThreshold: 1
+  maxHoldMovement: 150
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 1523691826}
   - component: {fileID: 1523691825}
   - component: {fileID: 1523691824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 1607978080}
   - component: {fileID: 1607978079}
   - component: {fileID: 1607978078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pared
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 2130755332}
   - component: {fileID: 2130755331}
   - component: {fileID: 2130755330}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pared
   m_TagString: Untagged
   m_Icon: {fileID: 0}
