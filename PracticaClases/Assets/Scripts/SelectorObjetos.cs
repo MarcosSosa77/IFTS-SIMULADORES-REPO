@@ -24,6 +24,9 @@ public class SelectorObjetos : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.instance.isUIOpen)
+            return;
+       
         //MOBILE INPUT
         if (Input.touchCount > 0)
         {
@@ -41,6 +44,21 @@ public class SelectorObjetos : MonoBehaviour
             {
                 isHolding = false;
             }
+        }
+
+        //PC INPUT
+        if (Input.GetMouseButtonDown(0)) //HAGO CLICK
+        {
+            StartHoldDetection(Input.mousePosition);
+        }
+        else if (Input.GetMouseButton(0))  // MANTENGO EL CLICK APRETADO
+        {
+            CheckHoldMovement(Input.mousePosition);
+            UpdateHoldTimer(Input.mousePosition);
+        } 
+        else if (Input.GetMouseButtonUp(0)) //levanto el click
+        {
+            isHolding = false;
         }
     }
 
@@ -84,8 +102,14 @@ public class SelectorObjetos : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100f, interactableLayer)) 
         {
-            Debug.Log("INTERACTUANDO con: " + hit.transform.gameObject.name);
-        }
+            ObjetoInteractuable objeto = hit.collider.GetComponent<ObjetoInteractuable>();
+
+            if(objeto != null)
+            {
+                objeto.Interactuar();
+            }
+
+        } 
     }
 
 }

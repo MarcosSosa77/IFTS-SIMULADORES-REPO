@@ -15,6 +15,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        
+        if (UIManager.instance.isUIOpen)
+            return;
+        
+
         //MOBILE INPUT
         if(Input.touchCount > 0) 
         {
