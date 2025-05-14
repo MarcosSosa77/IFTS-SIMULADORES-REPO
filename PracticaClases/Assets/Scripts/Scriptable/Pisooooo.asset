@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
+  m_Name: Pisooooo
+  m_EditorClassIdentifier: 
+  objectName: Pisoooo
+  prefab: {fileID: 1237270670884612972, guid: 81586831fb06e2543a9a4ba8fab8b253, type: 3}
+  customMaterialsToEdit: []
+  isTextured: 1
+  texturedMaterial: {fileID: 2100000, guid: 275484c3065c42d4e90cb2138ec9fdbd, type: 2}
+  availableTextures:
+  - {fileID: 2800000, guid: c58c16494d678ef45bd7018cfb50ebf7, type: 3}
+  - {fileID: 2800000, guid: 32857be9fc4b96d42b57d703090fa6f7, type: 3}
+  - {fileID: 2800000, guid: bbd067c1afb66ff44aee3b984f49582d, type: 3}
+  - {fileID: 2800000, guid: b3a997a722ed4ec4d8212ad9f2381dbc, type: 3}
+  - {fileID: 2800000, guid: 9c34fd2fe7109cf48b8c6cc9261f4ecf, type: 3}

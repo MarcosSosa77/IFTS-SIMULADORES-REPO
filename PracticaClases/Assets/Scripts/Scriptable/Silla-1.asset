@@ -15,3 +15,6 @@ MonoBehaviour:
   objectName: SILLA NR 1
   prefab: {fileID: 5934062149146083436, guid: e6b1b03d1a730f94a9d24b18c85736fa, type: 3}
   customMaterialsToEdit: []
+  isTextured: 0
+  texturedMaterial: {fileID: 0}
+  availableTextures: []
