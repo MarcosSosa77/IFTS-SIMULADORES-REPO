@@ -15,3 +15,8 @@ MonoBehaviour:
   objectName: PARED
   prefab: {fileID: 8577482176161837759, guid: cf3180c3ee2e6e5478682de7cca93083, type: 3}
   customMaterialsToEdit: []
+  isTextured: 0
+  texturedMaterial: {fileID: 0}
+  availableTextures: []
+  customRot: {x: 0, y: 0, z: 0, w: 0}
+  customScale: {x: 20, y: 10, z: 1}

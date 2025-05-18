@@ -4,8 +4,10 @@ using System.Collections;
 
 public enum SoundType
 {
-    DISPARO_1,
-    IMPACTO_1
+   BUTTON_CLICK,
+   BUTTON_CLOSE,
+   OBJECT_INSPECT,
+   BUTTON_HOVER
 
 }
 

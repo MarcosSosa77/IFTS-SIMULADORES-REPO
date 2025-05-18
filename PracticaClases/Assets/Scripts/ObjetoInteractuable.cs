@@ -56,9 +56,14 @@ public class ObjetoInteractuable : MonoBehaviour
             Destroy(currentInstance);
 
         //INSTANCIAR UN NUEVO OBJETO
-        ObjSO obj = objetos[currentIndex];
-        currentInstance = Instantiate(obj.prefab, spawnPoint.position + offset, spawnPoint.rotation, spawnPoint);
+         ObjSO obj = objetos[currentIndex];
+        // currentInstance = Instantiate(obj.prefab, spawnPoint.position + offset, obj.customRot , spawnPoint);
 
+        currentInstance = Instantiate(obj.prefab, spawnPoint.position + offset, obj.customRot);
+        currentInstance.gameObject.transform.localScale = obj.customScale;
+
+        // currentInstance.transform.localScale = Vector3.one; // Reset local scale
+        currentInstance.transform.SetParent(spawnPoint, true); // Keep world position
 
         Renderer rend = currentInstance.GetComponent<Renderer>();
 

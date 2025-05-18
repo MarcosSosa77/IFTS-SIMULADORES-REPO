@@ -17,6 +17,7 @@ public class ObjSO : ScriptableObject
     public bool isTextured = false; //determinar si el objeto utilza al menos una textura
     public Material texturedMaterial; // material que va a recibir la texture
     public List<Texture> availableTextures; //listado de texturas disponibles
-
+    public Quaternion customRot;
+    public Vector3 customScale = new Vector3(1,1,1);
 
 }

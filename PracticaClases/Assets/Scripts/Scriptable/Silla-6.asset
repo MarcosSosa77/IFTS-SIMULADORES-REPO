@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
+  m_Name: Silla-6
+  m_EditorClassIdentifier: 
+  objectName: SILLA NR 3
+  prefab: {fileID: 2210528345621867473, guid: f4132f99a654c13468e3411f518033bc, type: 3}
+  customMaterialsToEdit:
+  - {fileID: 2100000, guid: 34ea6ea7b55822c4aa9b07ffe2e6084e, type: 2}
+  isTextured: 0
+  texturedMaterial: {fileID: 0}
+  availableTextures: []
+  customRot: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  customScale: {x: 2, y: 2, z: 2}

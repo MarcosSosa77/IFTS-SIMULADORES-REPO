@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
+  m_Name: Pared-Nueva-1
+  m_EditorClassIdentifier: 
+  objectName: PARED
+  prefab: {fileID: 2769299712249295785, guid: 1150fafbd4c68ef45882b027a5882bed, type: 3}
+  customMaterialsToEdit: []
+  isTextured: 0
+  texturedMaterial: {fileID: 0}
+  availableTextures: []
+  customRot: {x: 0, y: 0, z: 0, w: 0}
+  customScale: {x: 1, y: 1, z: 1}
