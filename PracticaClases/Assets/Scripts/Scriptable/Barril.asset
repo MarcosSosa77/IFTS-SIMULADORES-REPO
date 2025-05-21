@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
+  m_Name: Barril
+  m_EditorClassIdentifier: 
+  objectName: Barril
+  customMaterialsToEdit:
+  - {fileID: 2100000, guid: 73363b56cbd2759449a3ed4f1ddf6f15, type: 2}
+  isTextured: 1
+  texturedMaterial: {fileID: 2100000, guid: 73363b56cbd2759449a3ed4f1ddf6f15, type: 2}
+  texturedElements:
+  - mainTexture: {fileID: 2800000, guid: f97f10b4ee9a1ea45ba5e48553940263, type: 3}
+    normalMap: {fileID: 2800000, guid: 227655d4bb0e6a04ba986ad06865123b, type: 3}
+  defaultTiling: {x: 1, y: 1}

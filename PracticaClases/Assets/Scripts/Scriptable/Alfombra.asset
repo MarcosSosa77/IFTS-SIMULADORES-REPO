@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
+  m_Name: Alfombra
+  m_EditorClassIdentifier: 
+  objectName: Alfombra
+  customMaterialsToEdit: []
+  isTextured: 1
+  texturedMaterial: {fileID: 2100000, guid: fc4bb3d46cad3a44a8b459f117521cbe, type: 2}
+  texturedElements:
+  - mainTexture: {fileID: 2800000, guid: c7fd9062dda740d4683dcc1bad9ebcd4, type: 3}
+    normalMap: {fileID: 2800000, guid: 35062aaa10d4f4648ac840a71858fce3, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 107fd4f924644f849b859d2e8796eb2b, type: 3}
+    normalMap: {fileID: 2800000, guid: 7a9c02b60beefdc438e6bbf0312806ab, type: 3}
+  - mainTexture: {fileID: 2800000, guid: ced1d62380812894c81f33d6935c8786, type: 3}
+    normalMap: {fileID: 2800000, guid: 2660532a56c0f6d4b8a3dba6f3261745, type: 3}
+  defaultTiling: {x: 1, y: 1}
