@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
+  m_Name: Techo
+  m_EditorClassIdentifier: 
+  objectName: Techo
+  customMaterialsToEdit: []
+  isTextured: 1
+  texturedMaterial: {fileID: 0}
+  texturedElements:
+  - mainTexture: {fileID: 2800000, guid: ce207ba7fd9e7f047867bbf272711c24, type: 3}
+    normalMap: {fileID: 2800000, guid: 274e29d0e00902040a3e840c24fef14d, type: 3}
+  - mainTexture: {fileID: 2800000, guid: b817c21b3dd3f2e449f88957c9cb76f4, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: bbea79d6aa038d54bab0fbdb23379cc8, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: a5fbcf512e323074384f3d7eb1b798f5, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: a350ac53491e75b4e843bb6e1705a1d4, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: 8ade6825967f29e4e9447897ae3c8878, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: 77f399026e807f748b4cebba73b4426c, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: 2cd3259f9019fbf4baa0566e469b5cc2, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: b3d2d9ac8c50c0743af991b469817ddc, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: 94ef6ca5a54f58047aff5c9713471b44, type: 3}
+    normalMap: {fileID: 2800000, guid: 274e29d0e00902040a3e840c24fef14d, type: 3}
+  - mainTexture: {fileID: 2800000, guid: df845f1b1122f644ab4fbfbd3b3c763f, type: 3}
+    normalMap: {fileID: 2800000, guid: 274e29d0e00902040a3e840c24fef14d, type: 3}
+  defaultTiling: {x: 1, y: 1}

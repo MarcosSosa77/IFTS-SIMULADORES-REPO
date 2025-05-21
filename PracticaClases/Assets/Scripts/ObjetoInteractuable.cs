@@ -1,10 +1,11 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class ObjetoInteractuable : MonoBehaviour
 {
-    public Transform spawnPoint;//punto donde aparecen los objetos
+    //public Transform spawnPoint;//punto donde aparecen los objetos
 
     [Header("SETEADO DE OBJETOS")]
     public ObjSO[] objetos; //lista de objetos scriptable
@@ -12,26 +13,29 @@ public class ObjetoInteractuable : MonoBehaviour
     public int currentIndex = 0;
 
     //MATERIALES
-    [HideInInspector] public GameObject currentInstance;
+  //  [HideInInspector] public GameObject currentInstance;
     [HideInInspector] public Material[] currentMaterials;
     [HideInInspector] public List<Material> editableMaterials = new List<Material>();
 
 
-    public Vector3 offset;
+  //  public Vector3 offset;
 
     private ObjSO currentObjectSelected;
 
     private int currentTextureIndex = 0;
 
+
+    //public int currentRotationIndex = 0;
+
     void Start() 
     {
-        this.gameObject.GetComponent<Renderer>().enabled = false;
+       // this.gameObject.GetComponent<Renderer>().enabled = false;
 
         SpawnCurrentObject();
     }
 
 
-
+    /*
     public void CambiarObjeto(int direccion) 
     {
         if(objetos == null || objetos.Length == 0) return;
@@ -47,29 +51,40 @@ public class ObjetoInteractuable : MonoBehaviour
     }
 
 
-    void SpawnCurrentObject()
+    public void SpawnCurrentObject()
     {
-        if (spawnPoint == null) return;
 
         //Destruir instancia anterior
-        if (currentInstance != null)
+
+        /*if (currentInstance != null)
             Destroy(currentInstance);
+      
+        currentObjectSelected = objetos[currentIndex];
 
-        //INSTANCIAR UN NUEVO OBJETO
-         ObjSO obj = objetos[currentIndex];
-        // currentInstance = Instantiate(obj.prefab, spawnPoint.position + offset, obj.customRot , spawnPoint);
+        Quaternion rotToUse = Quaternion.identity;
 
-        currentInstance = Instantiate(obj.prefab, spawnPoint.position + offset, obj.customRot);
-        currentInstance.gameObject.transform.localScale = obj.customScale;
+        if (currentObjectSelected.rotationVariants != null && currentObjectSelected.rotationVariants.Count > 0)
+        {
+            // Clamp rotation index
+            if (currentRotationIndex >= currentObjectSelected.rotationVariants.Count)
+                currentRotationIndex = 0;
 
-        // currentInstance.transform.localScale = Vector3.one; // Reset local scale
-        currentInstance.transform.SetParent(spawnPoint, true); // Keep world position
+            rotToUse = currentObjectSelected.rotationVariants[currentRotationIndex];
+        }
 
-        Renderer rend = currentInstance.GetComponent<Renderer>();
+        currentInstance = Instantiate(currentObjectSelected.prefab, transform.position, rotToUse);
+        AutoAlignToPosition(currentInstance,transform.position,currentObjectSelected.customOffset);     
 
+  
+
+
+
+        // Renderer rend = currentInstance.GetComponent<Renderer>();
+        Renderer rend = this.gameObject.GetComponent<Renderer>();
         if(rend != null) 
         {
-            currentObjectSelected = obj;
+            //currentObjectSelected = obj;
+            currentObjectSelected = objetos[currentIndex];
             //CLONAR LOS MATERIALES DEL OBJETO INSTANCIADO
             Material[] originalMats = rend.sharedMaterials;
             currentMaterials = new Material[originalMats.Length];
@@ -124,7 +139,18 @@ public class ObjetoInteractuable : MonoBehaviour
     
     }
 
-   
+
+    /*
+    public static void AutoAlignToPosition(GameObject obj, Vector3 targetPos, Vector3 manualOffset)
+    {
+        Renderer rend = obj.GetComponentInChildren<Renderer>();
+        if (rend != null)
+        {
+            Vector3 offset = obj.transform.position - rend.bounds.center + manualOffset;
+            obj.transform.position = targetPos + offset;
+        }
+    }
+    
 
     public void Interactuar() 
     {
@@ -196,6 +222,189 @@ public class ObjetoInteractuable : MonoBehaviour
             }
         }
 
+    }
+
+
+}
+*/
+
+
+using UnityEngine;
+using System.Collections.Generic;
+
+public class ObjetoInteractuable : MonoBehaviour
+{
+    [Header("Scriptable Object")]
+    public ObjSO currentObjectSO;
+
+    [Header("Runtime")]
+    [HideInInspector] public Material[] currentMaterials;
+    [HideInInspector] public List<Material> editableMaterials = new List<Material>();
+    private int currentTextureIndex = 0;
+
+    void Start()
+    {
+        SetupMaterials();
+    }
+
+    public void Interactuar()
+    {
+        UIManager.instance.ShowInteractionCanvas(this);
+    }
+
+    void SetupMaterials()
+    {
+        Renderer rend = GetComponent<Renderer>();
+        if (!rend || currentObjectSO == null) return;
+
+        // Clone materials to avoid shared asset modification
+        Material[] originalMats = rend.sharedMaterials;
+        currentMaterials = new Material[originalMats.Length];
+
+        for (int i = 0; i < originalMats.Length; i++)
+        {
+            currentMaterials[i] = originalMats[i] ? new Material(originalMats[i]) : null;
+        }
+
+        rend.materials = currentMaterials;
+
+        // Select editable materials
+        editableMaterials.Clear();
+
+        if (currentObjectSO.customMaterialsToEdit != null && currentObjectSO.customMaterialsToEdit.Count > 0)
+        {
+            foreach (var matToEdit in currentObjectSO.customMaterialsToEdit)
+            {
+                foreach (var mat in currentMaterials)
+                {
+                    if (mat != null && mat.name.StartsWith(matToEdit.name))
+                    {
+                        editableMaterials.Add(mat);
+                    }
+                }
+            }
+        }
+        else
+        {
+            editableMaterials.AddRange(currentMaterials); // Edit all if none specified
+        }
+              
+
+        if (currentObjectSO.isTextured && currentObjectSO.texturedMaterial && currentObjectSO.texturedElements.Count > 0)
+        {
+            ApplyTexture(currentObjectSO.texturedElements[0]);
+        }
+    }
+
+    public void SetColor(Color newColor)
+    {
+        foreach (var mat in editableMaterials)
+        {
+            if (mat != null)
+            {
+                mat.color = newColor;
+            }
+        }
+    }
+
+    public void SetTexture(int index)
+    {
+        if (!IsTextureValid(index)) return;
+        currentTextureIndex = index;
+        ApplyTexture(currentObjectSO.texturedElements[currentTextureIndex]);
+    }
+
+    public void NextTexture()
+    {
+        if (!IsTextureValid()) return;
+
+        currentTextureIndex++;
+        if (currentTextureIndex >= currentObjectSO.texturedElements.Count)
+            currentTextureIndex = 0;
+
+        ApplyTexture(currentObjectSO.texturedElements[currentTextureIndex]);
+
+    }
+
+    public void PreviousTexture()
+    {
+        if (!IsTextureValid()) return;
+
+        currentTextureIndex--;
+        if (currentTextureIndex < 0)
+            currentTextureIndex = currentObjectSO.texturedElements.Count - 1;
+
+        ApplyTexture(currentObjectSO.texturedElements[currentTextureIndex]);
+
+    }
+
+    private void ApplyTexture(TexturedElement element)
+    {
+        if (!currentObjectSO.texturedMaterial || element == null) return;
+
+        foreach (var mat in currentMaterials)
+        {
+            if (mat != null && mat.name.StartsWith(currentObjectSO.texturedMaterial.name))
+            {
+                mat.mainTexture = element.mainTexture;
+
+                if (element.normalMap != null)
+                {
+                    mat.EnableKeyword("_NORMALMAP");
+                    mat.SetTexture("_BumpMap", element.normalMap);
+                }
+                break;
+            }
+        }
+    }
+
+
+    private bool IsTextureValid(int index = -1)
+    {
+        return currentObjectSO.isTextured &&
+               currentObjectSO.texturedMaterial != null &&
+               currentObjectSO.texturedElements != null &&
+               currentObjectSO.texturedElements.Count > 0 &&
+               (index == -1 || (index >= 0 && index < currentObjectSO.texturedElements.Count));
+    }
+
+    public void SetTiling(Vector2 newTiling)
+    {
+        foreach (Material mat in editableMaterials)
+        {
+            if (mat != null)
+                mat.mainTextureScale = newTiling;
+        }
+    }
+
+
+    public void SetTextureByIndex(int index)
+    {
+        if (currentObjectSO == null || currentObjectSO.texturedElements == null || index < 0 || index >= currentObjectSO.texturedElements.Count)
+            return;
+
+        TexturedElement selectedElement = currentObjectSO.texturedElements[index];
+
+        foreach (Material mat in editableMaterials)
+        {
+            if (mat != null)
+            {
+                mat.mainTexture = selectedElement.mainTexture;
+
+                if (selectedElement.normalMap != null)
+                {
+                    mat.EnableKeyword("_NORMALMAP");
+                    mat.SetTexture("_BumpMap", selectedElement.normalMap);
+                }
+                else
+                {
+                    mat.DisableKeyword("_NORMALMAP");
+                    mat.SetTexture("_BumpMap", null); // Clear previous bump
+                }
+            }
+        }
+
+        currentTextureIndex = index;
     }
 
 

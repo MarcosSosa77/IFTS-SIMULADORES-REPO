@@ -12,13 +12,22 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Panels")]
     [SerializeField] private GameObject textureNavigationPanel;
-    [SerializeField] private GameObject meshesNavigationPanel;
 
 
 
     [Header("Sliders Colores")]
     [SerializeField] private Slider rSlider, gSlider, bSlider;
     [SerializeField] private TMP_Text rValueText, gValueText, bValueText;
+
+
+    [Header("Tiling Sliders")]
+    [SerializeField] private Slider tilingXSlider, tilingYSlider;
+    [SerializeField] private TMP_Text tilingXValueText, tilingYValueText;
+
+
+    [Header("Texture Selection Grid")]
+    [SerializeField] private GameObject textureButtonPrefab; // A prefab with Image + Button
+    [SerializeField] private Transform textureGridParent;
 
 
     private ObjetoInteractuable currentObject;
@@ -32,7 +41,11 @@ public class UIManager : MonoBehaviour
         gSlider.onValueChanged.AddListener(OnSliderValueChanged);
         bSlider.onValueChanged.AddListener(OnSliderValueChanged);
 
-      //  interactionCanvas.gameObject.SetActive(false);
+        tilingXSlider.onValueChanged.AddListener(OnTilingSliderChanged);
+        tilingYSlider.onValueChanged.AddListener(OnTilingSliderChanged);
+
+
+          interactionCanvas.gameObject.SetActive(false);
 
 
     }
@@ -50,39 +63,38 @@ public class UIManager : MonoBehaviour
 
     public void ShowInteractionCanvas(ObjetoInteractuable target)
     {
-     //   interactionCanvas.transform.SetParent(target.gameObject.transform);
-      //  interactionCanvas.transform.position = target.gameObject.transform.position + new Vector3(1f,2f,-1f);
-        //  interactionCanvas.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position + target.gameObject.transform.position);
-        //interactionCanvas.transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.back, Camera.main.transform.rotation * Vector3.up);
-
-        
         currentObject = target;
 
         interactionCanvas.gameObject.SetActive(true);
         isUIOpen = true;
-        /*
-        //MOSTRANDO INFO NOMBRE
-        objectNameText.text = "Interactuando con: " + target.objectName;
 
-        */
-        //TRABAJAR CON LAS TEXTURAS (SI ES QUE LAS TIENE)
-        bool hasTextures = currentObject.objetos != null 
-            && currentObject.objetos.Length > 0 
-            && currentObject.objetos[currentObject.currentIndex].isTextured
-            && currentObject.objetos[currentObject.currentIndex].availableTextures != null 
-            &&currentObject.objetos[currentObject.currentIndex].availableTextures.Count > 0;
+        objectNameText.text = currentObject.currentObjectSO.objectName;
 
 
-       if(textureNavigationPanel != null) 
+        // Show texture panel if the object supports textures
+        if (currentObject.currentObjectSO.isTextured && currentObject.currentObjectSO.texturedElements.Count > 0)
         {
-            textureNavigationPanel.SetActive(hasTextures);
+            textureNavigationPanel.SetActive(true);
+        }
+        else
+        {
+            textureNavigationPanel.SetActive(false);
         }
 
-        bool hasMultipleMeshes = currentObject.objetos != null && currentObject.objetos.Length > 1;
-        if(meshesNavigationPanel != null) 
+
+        // Set tiling values if materials exist
+        if (currentObject.editableMaterials != null && currentObject.editableMaterials.Count > 0)
         {
-            meshesNavigationPanel.SetActive(hasMultipleMeshes);
+            Vector2 currentTiling = currentObject.editableMaterials[0].mainTextureScale;
+
+            tilingXSlider.SetValueWithoutNotify(currentTiling.x);
+            tilingYSlider.SetValueWithoutNotify(currentTiling.y);
+
+            tilingXValueText.text = currentTiling.x.ToString("0.00");
+            tilingYValueText.text = currentTiling.y.ToString("0.00");
         }
+
+        PopulateTextureGrid();
 
 
 
@@ -100,15 +112,29 @@ public class UIManager : MonoBehaviour
             rValueText.text = Mathf.RoundToInt(currentColor.r * 255).ToString();
             gValueText.text = Mathf.RoundToInt(currentColor.g * 255).ToString();
             bValueText.text = Mathf.RoundToInt(currentColor.b * 255).ToString();
-            
+
         }
+
+
 
 
 
     }
 
+    public void OnTilingSliderChanged(float value)
+    {
+        if (currentObject == null) return;
 
-    public void HideInteractionCanvas() 
+        Vector2 newTiling = new Vector2(tilingXSlider.value, tilingYSlider.value);
+        currentObject.SetTiling(newTiling);
+
+        tilingXValueText.text = newTiling.x.ToString("0.00");
+        tilingYValueText.text = newTiling.y.ToString("0.00");
+    }
+
+
+
+    public void HideInteractionCanvas()
     {
         interactionCanvas.transform.SetParent(null);
         interactionCanvas.gameObject.SetActive(false);
@@ -116,45 +142,55 @@ public class UIManager : MonoBehaviour
         objectNameText.text = "";
         currentObject = null;
         textureNavigationPanel.SetActive(false);
-        meshesNavigationPanel.SetActive(false);
     }
+
+
+    private void PopulateTextureGrid()
+    {
+        // Clear old buttons
+        foreach (Transform child in textureGridParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (currentObject == null || currentObject.currentObjectSO == null || currentObject.currentObjectSO.texturedElements == null)
+            return;
+
+        for (int i = 0; i < currentObject.currentObjectSO.texturedElements.Count; i++)
+        {
+            int index = i; // Needed to avoid closure issue in lambda
+
+            GameObject buttonGO = Instantiate(textureButtonPrefab, textureGridParent);
+            RawImage image = buttonGO.GetComponentInChildren<RawImage>();
+            image.texture = currentObject.currentObjectSO.texturedElements[i].mainTexture;
+
+            buttonGO.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                currentObject.SetTextureByIndex(index);
+                SoundManager.instance.PlaySound(SoundType.BUTTON_CLICK, 2.0f);
+            });
+        }
+    }
+
 
 
     public void OnSliderValueChanged(float value)
     {
         SoundManager.instance.PlaySound(SoundType.BUTTON_HOVER);
+
         if (currentObject == null || currentObject.currentMaterials == null) return;
 
         Color newColor = new Color(rSlider.value, gSlider.value, bSlider.value);
 
-        foreach(Material mat in currentObject.editableMaterials) 
-        {
-            if (mat != null)
-                mat.color = newColor; ;
-        }
+        currentObject.SetColor(newColor); // Let the object apply the color
+
+        // Update RGB text values (0-255)
+        rValueText.text = Mathf.RoundToInt(newColor.r * 255).ToString();
+        gValueText.text = Mathf.RoundToInt(newColor.g * 255).ToString();
+        bValueText.text = Mathf.RoundToInt(newColor.b * 255).ToString();
     }
 
 
-
-
-    public void SiguienteObjecto()
-    {
-        if (currentObject != null)
-        {
-            currentObject.CambiarObjeto(1);
-            SoundManager.instance.PlaySound(SoundType.BUTTON_CLICK, 2.0f);
-        }
-    }
-
-
-    public void AnteriorObjecto()
-    {
-        if (currentObject != null)
-        {
-            currentObject.CambiarObjeto(-1);
-            SoundManager.instance.PlaySound(SoundType.BUTTON_CLICK, 2.0f);
-        }
-    }
 
 
     public void OnNextTextureClicked()
@@ -175,11 +211,6 @@ public class UIManager : MonoBehaviour
             SoundManager.instance.PlaySound(SoundType.BUTTON_CLICK, 2.0f);
         }
     }
-
-    // public void SiguienteObjeto() => currentObject?.CambiarObjeto(1);
-    //  public void AnteriorObjeto() => currentObject?.CambiarObjeto(-1);
-
-    // public void OnNextTextureClicked() => currentObject?.NextTexture();
-
-    // public void OnPreviousTextureClicked() => currentObject?.PreviousTexture();
 }
+
+  

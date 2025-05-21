@@ -12,12 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
   m_Name: Silla-4
   m_EditorClassIdentifier: 
-  objectName: SILLA NR 4
-  prefab: {fileID: 1364095284838020016, guid: b9ffca4f229df0f45b303cde9c836565, type: 3}
-  customMaterialsToEdit:
-  - {fileID: 2100000, guid: cdfd184bba33b5e47a5710ef6be34247, type: 2}
+  objectName: Silla-4
+  customMaterialsToEdit: []
   isTextured: 0
   texturedMaterial: {fileID: 0}
-  availableTextures: []
-  customRot: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
-  customScale: {x: 1.5, y: 1.5, z: 1.5}
+  texturedElements: []
+  defaultTiling: {x: 1, y: 1}

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a17772f60642443bdcf263d7897680, type: 3}
+  m_Name: Pared
+  m_EditorClassIdentifier: 
+  objectName: Pared
+  customMaterialsToEdit: []
+  isTextured: 1
+  texturedMaterial: {fileID: 2100000, guid: 463fa8b43e74e1743b787b5fdf82c81f, type: 2}
+  texturedElements:
+  - mainTexture: {fileID: 2800000, guid: df845f1b1122f644ab4fbfbd3b3c763f, type: 3}
+    normalMap: {fileID: 0}
+  - mainTexture: {fileID: 2800000, guid: 1e69c8c9999c38441a39d24f23452dc1, type: 3}
+    normalMap: {fileID: 2800000, guid: 0439896df7892534fa7a7f9cef9a4067, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 8747a004b282f2d40955a3b6aa34c596, type: 3}
+    normalMap: {fileID: 2800000, guid: 4e8d9e874e1d0e1469adeaa4386f4487, type: 3}
+  - mainTexture: {fileID: 2800000, guid: c58c16494d678ef45bd7018cfb50ebf7, type: 3}
+    normalMap: {fileID: 2800000, guid: 72f19cadc748fb449a59c111bb4c727a, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 32857be9fc4b96d42b57d703090fa6f7, type: 3}
+    normalMap: {fileID: 2800000, guid: fea9ecff5b656c247b7d60cb329141c9, type: 3}
+  - mainTexture: {fileID: 2800000, guid: bbd067c1afb66ff44aee3b984f49582d, type: 3}
+    normalMap: {fileID: 2800000, guid: 145f9e8d06367e543bdc215660a4414a, type: 3}
+  - mainTexture: {fileID: 2800000, guid: b3a997a722ed4ec4d8212ad9f2381dbc, type: 3}
+    normalMap: {fileID: 2800000, guid: 1a76a70c3f1a8b948a284a90dce98c55, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 9c34fd2fe7109cf48b8c6cc9261f4ecf, type: 3}
+    normalMap: {fileID: 2800000, guid: 65dbb2e18f9a13c4faa0e456ac087199, type: 3}
+  - mainTexture: {fileID: 2800000, guid: b659b241ab3c3244ea8144bd73b8b9f3, type: 3}
+    normalMap: {fileID: 2800000, guid: 149e636929e7c7f44964ccc81538b2b9, type: 3}
+  - mainTexture: {fileID: 2800000, guid: c8ecac4effcc52345be579ba0a0e2de0, type: 3}
+    normalMap: {fileID: 2800000, guid: c595311d10c6286458cf6d91ab46b4e1, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 24e5857cbf19d1148b57b7ca45a0d918, type: 3}
+    normalMap: {fileID: 2800000, guid: 9f28cf79cb0917b4a92f6f2fb2d0dbd4, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 6f4583d34b082d74da9acd6417c2db26, type: 3}
+    normalMap: {fileID: 2800000, guid: 4afeb900050dd6047be630c2588d972f, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 6f4583d34b082d74da9acd6417c2db26, type: 3}
+    normalMap: {fileID: 2800000, guid: 4afeb900050dd6047be630c2588d972f, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 6f4583d34b082d74da9acd6417c2db26, type: 3}
+    normalMap: {fileID: 2800000, guid: 4afeb900050dd6047be630c2588d972f, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 058cf47f60dcec24d82fe03e7ad9ea4b, type: 3}
+    normalMap: {fileID: 2800000, guid: 8358695870565904cb87a07495b3d2af, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 058cf47f60dcec24d82fe03e7ad9ea4b, type: 3}
+    normalMap: {fileID: 2800000, guid: 8358695870565904cb87a07495b3d2af, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 910f252e96c90814c9c83d59087044c5, type: 3}
+    normalMap: {fileID: 2800000, guid: 0d9a1c0d22cfe9e42832f6bffe558635, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 17565feb4f576754785a647924f539d7, type: 3}
+    normalMap: {fileID: 2800000, guid: 7681c240293256c4da86a062598bd872, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 69660174afe43cc4da9f8821848e9a6b, type: 3}
+    normalMap: {fileID: 2800000, guid: 2edf6a5fa2acbab4f89a6270d4eb5b38, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 7bd5cdb4f5a4bae4fa30ddb78fe3855f, type: 3}
+    normalMap: {fileID: 2800000, guid: c27b6fc693e5f69439d017e38a3999de, type: 3}
+  - mainTexture: {fileID: 2800000, guid: f40ee89735e6477439831e6d0eedcf6a, type: 3}
+    normalMap: {fileID: 2800000, guid: 29f958e658a87a047a23c8328ee00f36, type: 3}
+  - mainTexture: {fileID: 2800000, guid: 2ed268586972caf438cfd984b0327299, type: 3}
+    normalMap: {fileID: 2800000, guid: 0b6493293d59beb4e914c5e19b59d3ff, type: 3}
+  defaultTiling: {x: 1, y: 1}
