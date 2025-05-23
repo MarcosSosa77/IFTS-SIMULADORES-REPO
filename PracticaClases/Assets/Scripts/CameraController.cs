@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         
-        if (UIManager.instance.isUIOpen)
+        if (UIManager.instance.isUIOpen || JoystickPlayer.IsJoystickActive)
             return;
         
 

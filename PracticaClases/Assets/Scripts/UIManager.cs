@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Panels")]
     [SerializeField] private GameObject textureNavigationPanel;
-
+    [SerializeField] private GameObject joystickPanel;
 
 
     [Header("Sliders Colores")]
@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform textureGridParent;
 
 
+    [SerializeField] private Toggle fpsMovementToggle;
+    [SerializeField] private JoystickPlayer jp;
+
+
+
     private ObjetoInteractuable currentObject;
     public bool isUIOpen { get; private set; } = false;
 
@@ -43,9 +48,11 @@ public class UIManager : MonoBehaviour
 
         tilingXSlider.onValueChanged.AddListener(OnTilingSliderChanged);
         tilingYSlider.onValueChanged.AddListener(OnTilingSliderChanged);
+        fpsMovementToggle.onValueChanged.AddListener(OnFPSMovementToggleChanged);
 
 
-          interactionCanvas.gameObject.SetActive(false);
+
+        interactionCanvas.gameObject.SetActive(false);
 
 
     }
@@ -211,6 +218,14 @@ public class UIManager : MonoBehaviour
             SoundManager.instance.PlaySound(SoundType.BUTTON_CLICK, 2.0f);
         }
     }
+
+
+    private void OnFPSMovementToggleChanged(bool isOn)
+    {
+        jp.ToggleMovement(isOn);
+        joystickPanel.SetActive(isOn);
+    }
+
 }
 
-  
+
