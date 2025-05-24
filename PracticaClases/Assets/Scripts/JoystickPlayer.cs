@@ -34,6 +34,7 @@ public class JoystickPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         Move();
         LookAround();
     }
